@@ -1,0 +1,23 @@
+---
+platform: linux
+
+image_resource:
+  type: registry-image
+  source: {repository: concourse/builder-task}
+
+params:
+  REPOSITORY: databus23/builder-test
+  TAG: test
+  CONTEXT: builder
+  UNPACK_ROOTFS: yes
+
+inputs:
+- name: builder
+
+outputs:
+- name: image
+
+caches:
+- path: cache
+
+run: {path: builder/build}

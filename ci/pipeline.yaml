@@ -1,0 +1,25 @@
+resources:
+  - name: test.git
+    type: git
+    source:
+      uri: https://github.com/databus23/builder-task.git
+      branch: test
+jobs:
+  - name: nase
+    plan:
+      - get: builder.git
+      - task: build
+        privileged: true
+        file: builder.git/ci/build.yaml
+        input_mapping: {builder: builder.git}
+      - task: run
+        image: image
+        config:
+          platform: linux
+          run:
+            path: sh
+            args:
+            - -c
+            - |
+              echo hello from my image I just build
+
