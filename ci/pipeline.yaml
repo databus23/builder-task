@@ -22,4 +22,5 @@ jobs:
             - -c
             - |
               echo hello from my image I just build
+              echo is it really my container: $IS_IT_MY_IMAGE
 
