@@ -7,11 +7,11 @@ resources:
 jobs:
   - name: nase
     plan:
-      - get: builder.git
+      - get: test.git
       - task: build
         privileged: true
-        file: builder.git/ci/build.yaml
-        input_mapping: {builder: builder.git}
+        file: test.git/ci/build.yaml
+        input_mapping: {builder: test.git}
       - task: run
         image: image
         config:
